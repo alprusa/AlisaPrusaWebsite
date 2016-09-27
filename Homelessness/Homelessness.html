@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Walk</title>
+		
+		<link rel="stylesheet" type="text/css" href="Homelessness.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		
+		<!--for JQuery and Brine-->
+        <script type="text/javascript" src="jquery-2.0.2.js"></script>
+        <script type="text/javascript" src="brine.js"></script>
+        
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<script type="text/javascript" src="http://scalar.usc.edu/works/system/application/views/widgets/api/scalarapi.js"></script>
+		
+	</head>
+	<body onload="LoadContent(0)">
+        <div id="container">
+        	<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div>
+				  <ul class="nav nav-justified">
+				  	<li><a href="index.html">Home</a></li>
+					<li><a href="About.html">About</a></li>
+                    <li><a class="active" href="Homelessness.html">Walk</a></li>
+				  </ul>
+				</div>
+			
+			  </div>
+			</nav>
+			
+            <canvas id="canvas" style="border: solid black;" onclick="mousePosStart(event);"></canvas>
+            
+            <div id="win" class="window overlay img-responsive hidden">
+	        	<img src="img/messageBox.png" class="popUp img-responsive"/>
+	        	<p id="popTextUp" class="textPopUp">Dialog <br> - Name</p>
+	        	<button type="button" id="read" class="buttonPopUp btn btn-default pull-left" onclick="NextQuote();">Hear More</button>
+	        	<button type="button" id="walk" class="buttonPopUp btn btn-default pull-right" onclick="closeWindow();">Walk Away</button>
+	        </div>
+	        
+	        <div id="report" class="window overlay img-responsive hidden">
+	        	<img src="img/messageBox.png" class="popUp img-responsive"/>
+	        	<p id="reportData" class="textPopUp">People Interacted With <br> - Names</p>
+	        	<button type="button" id="read" class="buttonPopUp btn btn-default pull-right" onclick="restartPage();">Interview Again</button>
+	        </div>
+            
+            <!--Avatar file-->
+            <script type="text/javascript" src="Avatar.js"></script>
+            <script type="text/javascript" src="ScalarData.js"></script>
+            <script type="text/javascript" src="Notes.js"></script>
+            
+            <!--Game object files-->
+            <script type="text/javascript" src="GameObjects.js"></script>
+            <script type="text/javascript" src="SoundEffects.js"></script>
+            <script type="text/javascript" src="Text.js"></script>
+            
+            <!--Background and Screens-->
+            <script type="text/javascript" src="Background.js"></script>
+            <script type="text/javascript" src="GettingStarted.js"></script>
+            <script type="text/javascript" src="Camera.js"></script>
+            <script type="text/javascript" src="Buildings.js"></script>
+            <script type="text/javascript" src="Homelessness.js"></script>
+            
+           <!-- <div id="markers">
+            	<img id="line" src="img/line-bar.png" style="position:absolute;"/>
+           </div>-->
+        	<br>
+        	
+        	<div class="btn-group" id="jumpTo">
+    			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Jump To<b class="caret"> </b></button>
+   				<ul class="dropdown-menu" >
+         			<li><button onclick="jumpTo('McDonalds');">McDonalds</button></li>
+         			<li><button onclick="jumpTo('Church');">Church</button></li>
+					<li><button onclick="jumpTo('Shelter');">Shelter</button></li>
+					<li><button onclick="jumpTo('School');">School</button></li>
+					<li><button onclick="jumpTo('Bank');">Bank</button></li>
+					<li><button onclick="jumpTo('Hospital');">Hospital</button></li>
+				</ul>
+			</div>
+        </div>
+	</body>
+</html>
+
+<!--All is left to do now is make the code clean and pretty-->

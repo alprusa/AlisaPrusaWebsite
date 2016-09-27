@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Homelessness</title>
+		<meta name="description" content="">
+		<meta name="author" content="Aprusa">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="http://scalar.usc.edu/works/system/application/views/widgets/api/scalarapi.js"></script>
+		
+		<script type="text/javascript">	
+			$( document ).ready( function() { 
+				   	
+				scalarapi.setBook( "http://scalar.usc.edu/works/walking-through-homelessness-/index" );
+				var pagesContent = [[]];
+				   		
+				if ( scalarapi.loadNode( "index", true, handleSuccess, handleFailure, 1 ) == "loaded" ) {
+					handleSuccess();
+				};    
+				  			
+				function handleSuccess() {
+					var node = scalarapi.getNode("quotes");
+					
+					var pathContents = node.getRelatedNodes( "path", "outgoing" );
+					
+					for(var i = 0; i < pathContents.length; i++){
+						$( "body" ).append( "<p>Current page: <b>" + pathContents[i].getDisplayTitle() + "</b></p>" );
+	                    var text = pathContents[i].current.content;
+	                    pagesContent[i][0] = text;
+                   }
+                   
+                   separateQuotes();
+                   displayQuote();
+				}
+				   		
+				function handleFailure() {
+					$( "body" ).append( "<p>The node could not be loaded.</p>" );
+				}
+				
+				function separateQuotes(){
+					var searchString = "<br /><br />";
+					for(var i = 0; i < pagesContent.length; i++){
+						var text = pagesContent[i][0];
+						for (var j = 0; text != ""; j++){
+							var quoteIndex = text.indexOf(searchString);
+							
+							var quote = "";
+							if(quoteIndex > 0) quote = text.substring(0, quoteIndex);
+							else {
+								quote = text;
+								quote.trim();
+							
+								pagesContent[i][j] = quote;
+								break;
+							}
+							quote.trim();
+							
+							pagesContent[i][j] = quote;
+							
+							text = text.substring(quoteIndex + searchString.length, text.length);
+						}
+					}
+				}
+				
+				function displayQuote(){
+					for(var i = 0; i < pagesContent.length; i++){
+						for(var j = 0; j < pagesContent[i].length; j++){
+							$( "body" ).append( "<p>" + pagesContent[i][j] + "</p>" );
+						}
+					}
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>Homelessness</h1>
+			</header>
+			<nav>
+				<p>
+					<a href="/">Home</a>
+				</p>
+				<p>
+					<a href="/contact">Contact</a>
+				</p>
+			</nav>
+
+			<div>
+
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright  by Aprusa
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+body{
+	background-image: url("img/BackdropAlter4.png");
+	background-repeat: no-repeat;
+	background-color: #000000 !important;
+}
+
+a {
+	font-size: 28px;
+    color: #FFFFFF !important;
+}
+
+.active{
+	font-weight: bold;
+}
+
+#container{
+    width:100%;
+    height:90%;
+	margin: 0 auto;
+	
+}
+
+#canvas{
+	width: 100%;
+	height: 700px;
+	float: center;
+    margin: 0 auto;
+}
+
+.dropdown-menu > li {
+    display: block;
+    float:left;
+}
+.open > ul {
+    display: inline-flex !important;
+    float:left;
+}
+
+.navbar{
+    background-color: #000000 !important;
+    text-align: center;
+    float:center;
+    color: white;
+}
+
+#jumpTo{
+	top:5px;
+}
+
+#line{
+	width:100%;
+	height:5%;
+	float:center;
+	margin: 0 auto;
+	padding-top:5px;
+	padding-bottom:20px;
+}
+
+.point{
+	width:5%;
+	height:5%;
+	padding-bottom:10px;
+}
+
+#imgText{
+	width:90%
+	height:90%;
+	margin: 0 auto;
+	padding: 0;
+	float:center;
+}
+
+.window{
+	width: 50%;
+	height: 50%;
+	margin: 0 auto;
+	top: 5px;
+	bottom: 200px;
+    float:center;
+    z-index: 9999;
+}
+
+.popUp{
+	width:70%;
+	height:300px;
+	position: absolute;
+	margin: 0 auto;
+	float:center;
+}
+
+.textPopUp{
+	position: relative;
+	width:55%;
+	height:30%;
+	margin: 0 auto;
+	font-size: 20px;
+	float:left;
+	top:20px;
+	color:white;
+	left: 5px;
+	z-index: 9999;
+}
+
+.buttonPopUp{
+	position: relative;
+	margin: 0 auto;
+	float:left;
+	right:40%;
+	top:92%;
+	z-index: 9999;
+}
+
+.overlay{
+	position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 50%;
+    height: 50%;
+    z-index: 10000;
+}
