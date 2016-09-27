@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>3D Sierpinski Sphere</title>
+
+<style>
+  body {
+	background-color:lightgray;
+	overflow-y:hidden;
+	height = auto;
+  }
+  canvas {
+	position:relative;
+	bottom:180px;
+  }
+  p {
+	text-align:center;
+	position:relative;
+	right:-150px;
+  }
+</style>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+attribute vec4 vNormal;
+varying vec4 color;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+uniform vec4 ambientProduct, diffuseProduct, specularProduct, lightPosition;
+
+uniform float yPos;
+uniform float xPos;
+uniform float zPos;
+uniform vec3 theta;
+uniform float scale;
+uniform float shininess;
+
+void
+main()
+{
+	vec3 angle = radians(theta);
+	vec3 c = cos(angle);
+	vec3 s = sin(angle);
+	
+	vec3 pos = -(modelViewMatrix * vPosition).xyz;
+    vec3 light = lightPosition.xyz;
+    vec3 L = normalize( light - pos );
+	
+    vec3 E = normalize( -pos );
+    vec3 H = normalize( L + E );
+    
+    // Transform vertex normal into eye coordinates
+ 
+    vec3 N = normalize( (modelViewMatrix*vNormal).xyz);
+
+    // Compute terms in the illumination equation
+    vec4 ambient = ambientProduct;
+
+    float Kd = max( dot(L, N), 0.0 );
+    vec4 diffuse = Kd*diffuseProduct;
+
+    float Ks = pow( max(dot(N, H), 0.0), shininess );
+    vec4 specular = Ks * specularProduct;
+    
+    if( dot(L, N) < 0.0 ) {
+	specular = vec4(0.0, 0.0, 0.0, 1.0);
+    } 
+	
+	mat4 translate = mat4(
+		1.0,  0.0,  0.0, xPos,
+		0.0,  1.0,  0.0, yPos,
+		0.0, 0.0, 1.0, zPos,
+		0.0, 0.0,  0.0, 1.0
+	);
+			
+	mat4 rotatex = mat4( 
+		1.0,  0.0,  0.0, 0.0,
+		0.0,  c.x,  s.x, 0.0,
+		0.0, -s.x,  c.x, 0.0,
+		0.0,  0.0,  0.0, 1.0
+	);
+
+    mat4 rotatey = mat4( 
+		c.y, 0.0, -s.y, 0.0,
+		0.0, 1.0,  0.0, 0.0,
+		s.y, 0.0,  c.y, 0.0,
+		0.0, 0.0,  0.0, 1.0 
+	);
+
+    mat4 rotatez = mat4( 
+		c.z, -s.z, 0.0, 0.0,
+		s.z,  c.z, 0.0, 0.0,
+		0.0,  0.0, 1.0, 0.0,
+		0.0,  0.0, 0.0, 1.0 
+	);
+	
+	vec4 position = vPosition * translate * rotatex * rotatey * rotatez;
+	
+	gl_Position = position * projectionMatrix * modelViewMatrix;
+	gl_Position.w = 1.0 + scale;
+	
+    color = ambient + diffuse + specular + vColor;
+	color.a = 1.0;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 color;
+uniform vec4 sphere;
+uniform bool uUseTexture;
+
+vec4 texture(vec4 sp){
+	const int width = 16;
+	const int height = 16;
+	const int dis = 1;
+	float persistance = 0.5;
+	float amplitude = 1.0;
+    float totalAmplitude = 0.0;
+	
+	for(int i = 0; i < dis; i++){
+	   amplitude *= persistance;
+       totalAmplitude += amplitude;
+	   for (int t = 0; t < height; t++)
+       {
+          for (int j = 0; j < width; j++)
+          {
+             sp *= amplitude;
+          }
+       }
+    }
+   for (int i = 0; i < width; i++)
+   {
+      for (int j = 0; j < height; j++)
+      {
+         sp /= totalAmplitude;
+      }
+   }
+	return sp;
+}
+
+void
+main()
+{
+	if(!uUseTexture){
+		gl_FragColor = vec4(color) / texture(sphere);
+	}
+	else
+		 gl_FragColor = vec4(color);
+	
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="gasket4.js"></script>
+</head>   
+
+<body>
+
+<button id="IncreaseFOV" >Increase FOV</button>
+<button id="DecreaseFOC" >Decrease FOV</button>
+
+<p>Change the size of the Sphere with 'Q' = decrease or 'E' = increase.</p>
+<p>Change the number of subdivisions by pressing keys 1-6.</p>
+<p>Use 'X' = rotate on X axis, 'Y' = rotate on Y axis, 'Z' = rotate on Z axis rotate the 3D Sphere.</p>
+<p>Use one of the FOV buttons or use the middle mouse wheel to zoom in and out the 3D Sphere.</p>
+<p>Press 'W' = forward, 'S' = back, 'A' = left, or 'D' = right to change the location (translate) of the Sphere.</p>
+<p>Press 'R' = left, 'F' = right to change the camera location in the scene and 'P' changes the camera axis.</p>
+<p>Click and drag the left mouse button to move the light around.</p>
+<p>Press 'T' to turn off the shading of the light source.</p>
+<p>Press 'C' to change the appearance of the Sphere</p>
+
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
