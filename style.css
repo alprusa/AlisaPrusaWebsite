@@ -1,0 +1,64 @@
+body {
+	background-color:#363638;
+}
+
+#header .title,  #header .tagline, #nav, .content p.entry-title, .content p.date {
+	font-family: 'Share Tech', sans-serif;
+}
+
+#container {
+	width:100%;
+	background-color:#FFFFFF;
+	height:100%;
+}
+
+#titlebar{
+	width: 100%;
+	margin: 0 auto;
+	background-color:#1FBFB7;
+	height: 60px;
+	padding: 0px;
+	margin-bottom: 20px;
+	text-align:center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#nav {
+	width: 200px;
+	margin: 0 auto;
+	background-color:#83B39A;
+	height: 700px;
+	padding: 0px;
+	margin-bottom: 20px;
+	float:left;
+}
+
+a:link, a:visited {
+    color: black;
+}
+
+a:hover{
+	color: #A60B00;
+}
+
+#siteList{
+	margin: 0 auto;
+	padding: 0px;
+	text-align:center;
+	padding-top: 10px;
+}
+
+#nav li a {
+	text-decoration:none;
+}
+
+#fillerimg{
+	margin: 0 auto;
+	padding: 0px;
+	float:right;
+	margin-right:450px;
+	margin-top:100px;
+	font-size:10px;
+	text-align:center;
+}
