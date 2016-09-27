@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>3D Sierpinski Gasket</title>
+
+<style>
+  body {
+	background-color:lightgray;
+	overflow-y:hidden;
+	height = auto;
+  }
+  canvas {
+	position:relative;
+	bottom:180px;
+  }
+  p {
+	text-align:center;
+	position:relative;
+	left:110px;
+  }
+</style>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec3 vPosition;
+attribute vec3 vColor;
+attribute vec3 tColor;
+varying vec4 color;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+uniform float yPos;
+uniform float xPos;
+uniform vec3 theta;
+uniform float scale;
+
+void
+main()
+{
+	vec3 angle = radians(theta);
+	vec3 c = cos(angle);
+	vec3 s = sin(angle);
+	
+	
+	mat4 translate = mat4(
+		1.0,  0.0,  0.0, xPos,
+		0.0,  1.0,  0.0, yPos,
+		0.0, 0.0, 1.0, 0.0,
+		0.0, 0.0,  0.0, 1.0
+	);
+			
+	mat4 rotatex = mat4( 
+		1.0,  0.0,  0.0, 0.0,
+		0.0,  c.x,  s.x, 0.0,
+		0.0, -s.x,  c.x, 0.0,
+		0.0,  0.0,  0.0, 1.0
+	);
+
+    mat4 rotatey = mat4( 
+		c.y, 0.0, -s.y, 0.0,
+		0.0, 1.0,  0.0, 0.0,
+		s.y, 0.0,  c.y, 0.0,
+		0.0, 0.0,  0.0, 1.0 
+	);
+
+    mat4 rotatez = mat4( 
+		c.z, -s.z, 0.0, 0.0,
+		s.z,  c.z, 0.0, 0.0,
+		0.0,  0.0, 1.0, 0.0,
+		0.0,  0.0, 0.0, 1.0 
+	);
+	
+	vec4 position = vec4(vPosition, 1.0) * translate * rotatex * rotatey * rotatez;
+	
+	gl_Position = position * projectionMatrix * modelViewMatrix;
+	gl_Position.w = 1.0 + scale;
+    color = vec4(vColor , 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 color;
+
+void
+main()
+{
+    gl_FragColor = vec4(color);
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="gasket4.js"></script>
+</head>   
+
+<body>
+
+<button id="IncreaseFOV" >Increase FOV</button>
+<button id="DecreaseFOC" >Decrease FOV</button>
+
+<p id="instructions">
+<p>Change the size of the Triangle with 'Q' = decrease or 'E' = increase</p>
+<p>Change the number of subdivisions by pressing keys 1-5</p>
+<p>Use 'X' = rotate on X axis, 'Y' = rotate on Y axis, 'Z' = rotate on Z axis rotate the 3D gasket</p>
+<p>Use one of the FOV buttons or use the middle mouse wheel to zoom in and out the 3D gasket</p>
+<p>press 'W' = forward, 'S' = back, 'A' = left, or 'D' = right to change the location (translate) of the triangle</p>
+<p>press 'R' = left, 'F' = right or left click and drag to change the camera location in the scene</p></p>
+
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
