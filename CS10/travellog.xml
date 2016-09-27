@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="mytravel.xsl"?>
+<world>
+<creatures>
+<class> Reluct </class>
+<pyramid pic = "Reluct.jpg">
+The human like species from the planet Section 12 Area 4, are
+well-known for their ability to make complex architectural
+buildings which far surpasses their competitor the Operts.
+</pyramid>
+<population>10,560,991,060</population>
+</creatures>
+<creatures>
+<class> Opert </class>
+<pyramid pic="Opert.jpg">
+These species are just as intelligent as the Relucts and
+what makes them a competitor are their skills in crafting
+very ornate artifacts.
+</pyramid>
+<population>9,553,901,074</population>
+</creatures>
+<creatures>
+<class> Phoint</class>
+<pyramid pic="Phoint.jpg">
+This is the main species of plant life found on Section 12 Area 4.
+These plants make delicious fruits and it's wood is stronger
+than iron, so it is not used often for building materials.
+</pyramid>
+<population>~300,890,600,000,100</population>
+</creatures>
+</world>
