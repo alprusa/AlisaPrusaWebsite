@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CannibowlCity</title>
+		<link rel="stylesheet" type="text/css" href="CannibowlCity.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	</head>
+	<body onload="LoadContent(0)">
+        <div id="container">
+        	<div id="menuScreens" class="img-overlay">
+				<img id="menuBackdrops" src="img/StartScreen.png" class="img-responsive" style="width:100%; position: absolute;">
+				
+				<!--Start menu buttons-->
+				<div id="menuButtons">
+					<img src="img/StartButton.png" class="img-responsive buttonsHv img-overlay" onclick="startGame();">
+					<img src="img/CreditsButton.png" class="img-responsive buttonsHv img-overlay" onclick="creditsScreen();">
+					<img src="img/InstructionButton.png" class="img-responsive buttonsHv img-overlay" onclick="instructionScreen();">
+				</div>
+				
+				<!--GameOver screen-->
+				<div id="gameOverButtons" class="hidden">
+					<p id="restartVal">Restart</p>
+					<p id="deathMessage">Death Note</p>
+					<img src="img/RestartButtonBlack.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="restartGame();">
+					<img src="img/MenuButtonBlack.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="reloadToMenu();">
+				</div>
+				
+				<div id="victoryButtons" class="hidden">
+					<img src="img/RestartButtonRed.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="restartGameLevel();">
+					<img src="img/MenuButtonRed.png" class="img-responsive buttonsHv img-overlay buttonsHvB" onclick="reloadToMenu();">
+				</div>
+				
+				<!--Return to menu button-->
+				<img id="backButton" src="img/BackButton.png" class="img-responsive buttonsHv img-overlay hidden" style="position: absolute;" onclick="returnToMenu();">
+			</div>
+		
+            <canvas id="canvas" width="800" height="550"></canvas>
+            
+            <!--for JQuery and Brine-->
+            <script type="text/javascript" src="jquery-2.0.2.js"></script>
+            <script type="text/javascript" src="brine.js"></script>
+            
+            <!--Avatar file-->
+            <script type="text/javascript" src="Avatar.js"></script>
+            <script type="text/javascript" src="wKeyAction.js"></script>
+            <script type="text/javascript" src="BoxInteraction.js"></script>
+            <script type="text/javascript" src="Hiding.js"></script>
+            <script type="text/javascript" src="Notes.js"></script>
+            
+            <!--Game object files-->
+            <script type="text/javascript" src="GameObjects.js"></script>
+            <script type="text/javascript" src="Cannibals.js"></script>
+            <script type="text/javascript" src="HealthHunger.js"></script>
+            <script type="text/javascript" src="SoundEffects.js"></script>
+            <script type="text/javascript" src="Boss.js"></script>
+            <script type="text/javascript" src="Collision.js"></script>
+            <script type="text/javascript" src="Text.js"></script>
+            
+            <!--Background and Screens-->
+            <script type="text/javascript" src="Background.js"></script>
+            <script type="text/javascript" src="GettingStarted.js"></script>
+            <script type="text/javascript" src="NextLevel.js"></script>
+            <script type="text/javascript" src="Camera.js"></script>
+            <script type="text/javascript" src="CannibowlCity.js"></script>
+        </div>
+	</body>
+</html>
+
+<!--All is left to do now is make the code clean and pretty-->

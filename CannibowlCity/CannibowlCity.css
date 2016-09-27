@@ -1,0 +1,94 @@
+#container{
+    width:70%;
+	margin: 0 auto;
+	background-color:#FFFFFF;
+	height:70%;
+	position: relative;
+}
+
+#canvas{
+	position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    top: 5px;
+    bottom: 200px;
+    border: solid black;
+}
+
+#menuScreens{
+	position: absolute;
+	margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    top: 5px;
+    bottom: 200px;
+    border: solid black;
+}
+
+.buttonsHv{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonsHv:hover{
+	cursor: hand;
+	border: solid black;
+}
+
+.buttonsHvB:hover{
+	cursor: hand;
+	border: solid red;
+}
+
+#menuButtons{
+	position: absolute;
+    margin: 0 auto;
+    margin-top: 30%;
+    left:37%;
+}
+
+#gameOverButtons{
+	position: absolute;
+    margin: 0 auto;
+    margin-top: 30%;
+    left:40%;
+}
+
+#victoryButtons{
+	position: absolute;
+    margin: 0 auto;
+    margin-top: 34%;
+    left:40%;
+}
+
+#restartVal{
+	font-size: 48;
+	color: white;
+	text-align: center;
+}
+
+#deathMessage{
+	font-size: 48;
+	color: white;
+	text-align: center;
+}
+
+@media (max-width: 481px) {
+	.buttonsHv{
+		width:50%;
+	}
+}
+
+@media (min-width: 481px) and (max-width:630px) {
+	.buttonsHv{
+		width:70%;
+	}
+}
+
+@media (min-width: 630px) and (max-width:1024px) {
+	.buttonsHv{
+		width:80%;
+	}
+}
