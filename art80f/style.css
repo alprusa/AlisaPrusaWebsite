@@ -1,0 +1,136 @@
+body {
+	background-color:#363638;
+}
+
+/* This sections designates the fonts for the page*/
+#header .title,  #header .tagline, #nav, .content p.entry-title, .content p.date {
+	font-family: 'Lobster', cursive;
+}
+
+.content p  {
+	font-family: 'Roboto Slab', serif;
+}
+
+/*Below deesignates the styles for each of the HTML items */
+
+#container {
+	width:1200px;
+	margin: 0 auto;
+	background-color:#FFFFFF;
+	height:100%;
+}
+
+#nav {
+	width: 1200px;
+	margin: 0 auto;
+	background-color:#1FBFB7;
+	height: 60px;
+	padding: 0px;
+	margin-bottom: 20px;
+}
+
+#nav ul {
+	list-style:none;
+	margin-left:60px;
+}
+
+#nav li a {
+	float:left;
+	color: #000000;
+	font-size: 20px;
+	text-decoration:none;
+	padding-right: 140px;
+	margin-top:20px;
+}
+
+#header {
+	height: 100px;
+	text-align: left;
+	padding: 0px;
+	margin-left:60px;
+}
+
+#header .title {
+	font-size:50px;
+	color:#CC6438;
+	margin-bottom: 10px;
+}
+
+#header .tagline {
+	font-size:28px;
+	color:#784C3E; 
+	margin-bottom:5px;
+}
+
+#tContents{
+	margin: 0 auto;
+	padding: 0px;
+	text-align: center;
+}
+
+#tContents ul{
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0px;
+	text-align: center;
+}
+
+#tContents ul a{
+	text-decoration: none;
+	color: blue;
+}
+
+.content {
+	width: 1000px;
+	margin: 0 auto;
+	padding-bottom: 40px;
+}
+
+.content p.entry-title {
+	font-size: 30px;
+	color: #3D5771; 
+	margin-bottom: 10px;
+	margin-top: 60px;
+	margin-left:5px;
+}
+
+.content p.date {
+	font-size: 20px;
+	color: #5B798A; 
+	margin-bottom: 20px;
+	margin-top: 5px;
+	margin-left:5px;
+}
+
+.content p {
+	font-size:16px;
+	line-height: 24px;
+	color: #565656;
+	margin-left: 5px;
+	margin-right: 20px;
+}
+
+.content img.displayed {
+	position:relative;
+	margin-top: 20px;
+}
+
+#processingContainer{
+	margin: 0 auto; 
+	top: 5px;
+	bottom: 200px;
+}
+
+#footer {
+	margin: 0 auto;
+	height: 60px;
+	width: 1200px;
+	background-color:#1FBFB7;
+}
+
+#p5{
+	width: 100%;
+	height: 600px;
+	margin: 0 auto;
+	padding: 0;
+}
